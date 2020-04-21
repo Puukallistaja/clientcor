@@ -14,20 +14,15 @@ q-layout
    q-scroll-area.fit
     q-list.menu-list(padding)
       q-item(
+        v-for="(site, indexOfSite) in siteList"
+        :key="indexOfSite"
+        :active="$route.path == site.path"
         v-ripple
         clickable
       )
         q-item-section(avatar)
-          q-icon(name="restaurant")
-        q-item-section(@click="$router.push('/office/restaurant')") Restaurants
-      q-item(
-        active
-        clickable
-        v-ripple
-      )
-        q-item-section(avatar)
-          q-icon(name="schedule") 
-        q-item-section(@click="$router.push('/office/order')") Orders
+          q-icon(:name="site.icon")
+        q-item-section(@click="$router.push(site.path)") {{ site.name }}
   q-page-container
     router-view
 </template>
@@ -38,7 +33,29 @@ export default {
   data() {
     return {
       drawer: false,
+      siteList: [
+        {
+          name: 'Restaurants',
+          path: '/office/restaurant',
+          icon: 'restaurant',
+        },
+        {
+          name: 'Orders',
+          path: '/office/order',
+          icon: 'schedule',
+        },
+        {
+          name: 'Users',
+          path: '/office/user',
+          icon: 'supervisor_account',
+        },
+        {
+          name: 'Tasks',
+          path: '/office/task',
+          icon: 'list',
+        },
+      ]
     }
-  },
+  }
 }
 </script>
