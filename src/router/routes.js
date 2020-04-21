@@ -10,6 +10,22 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/office",
+    component: () => import("layouts/officeLayout.vue"),
+    children: [
+      {
+        name: "Restaurants",
+        path: "restaurant",
+        component: () => import("pages/RestaurantPage.vue"),
+      },
+      {
+        name: "Orders",
+        path: "order",
+        component: () => import("pages/OrderPage.vue"),
+      },
+    ],
+  },
 ]
 
 // Always leave this as last one

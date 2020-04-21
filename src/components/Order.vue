@@ -1,35 +1,15 @@
 <template lang="pug">
   div
-    h1.text-h3.q-mb-xl In the back
-    q-form(
-      @submit="onSubmit"
-      @reset="onReset"
-      class="q-gutter-md"
-    )
-      q-input(
-        v-model="email"
-        type="email"
-        suffix="@backoffice.com"
-        rounded
-        outlined
+    h1.text-h3.q-mb-xl {{ $route.name }}
+    div.row.justify-center.q-gutter-md
+      restaurant-item(
+        v-if="restaurants.length"
+        v-for="restaurant in restaurants"
+        :key="restaurant.name"
+        :name="restaurant.name"
+        :description="restaurant.description"
+        :address="restaurant.address"
       )
-        template(v-slot:before)
-          q-icon(name="mail")
-      q-input(
-        v-model="password"
-        rounded
-        outlined
-        :type="hidePassword ? 'password' : 'text'"
-        hint="Password with toggle"
-      )
-        template(v-slot:before)
-          q-icon(name="vpn_key")
-        template(v-slot:append)
-          q-icon(
-            :name="hidePassword ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="hidePassword = !hidePassword"
-          )
       div.q-ml-lg.q-pl-md
         q-toggle(
           v-model="accept"
@@ -54,9 +34,12 @@
 
 <script>
 import { mapActions } from "vuex"
-
+import RestaurantItem from './RestaurantItem'
 export default {
   name: "AuthForm",
+  components: {
+    RestaurantItem
+  },
   data() {
     return {
       age: 20,
@@ -64,10 +47,12 @@ export default {
       email: "",
       password: "",
       hidePassword: true,
+      restaurants: [{
+        name: "Placeholder"
+      }],
     }
   },
   methods: {
-    ...mapActions("todos", ["fetchTodos"]),
     onSubmit(ev) {
       console.log(ev)
     },
@@ -76,8 +61,8 @@ export default {
     },
   },
   async mounted() {
-    await this.fetchTodos(1)
-    this.$axios.get('/api/')
+    const { data: restaurants } = await this.$axios.get("/api/restaurant")
+    this.restaurants = restaurants
   },
 }
 </script>
