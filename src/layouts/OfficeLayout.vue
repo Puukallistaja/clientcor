@@ -23,7 +23,7 @@ q-layout
         q-item-section(avatar)
           q-icon(:name="site.icon")
         q-item-section(@click="$router.push(site.path)") {{ site.name }}
-  q-page-container
+  q-page-container.q-pa-md
     router-view
 </template>
 

@@ -1,68 +1,38 @@
 <template lang="pug">
   div
     h1.text-h3.q-mb-xl {{ $route.name }}
-    div.row.justify-center.q-gutter-md
-      restaurant-item(
-        v-if="restaurants.length"
-        v-for="restaurant in restaurants"
-        :key="restaurant.name"
-        :name="restaurant.name"
-        :description="restaurant.description"
-        :address="restaurant.address"
+    div.col
+      order-item(
+        v-if="orders.length"
+        v-for="(order, indexOfOrder) in orders"
+        :key="order.restaurantId"
+        :restaurantId="cutToSize(order.restaurantId)"
+        :userId="cutToSize(order.userId)"
+        :price="order.price"
+        :items="order.items"
       )
-      div.q-ml-lg.q-pl-md
-        q-toggle(
-          v-model="accept"
-          label="I accept the license and terms"
-        )
-      div.q-ml-xl.q-pl-xs.q-mt-xl.justify-center.row
-        q-btn(
-          label="Submit"
-          type="submit"
-          color="primary"
-          size="lg"
-        )
-        q-btn(
-          flat
-          label="Reset"
-          type="reset"
-          color="primary"
-          size="lg"
-          class="q-ml-sm"
-        )
 </template>
 
 <script>
-import { mapActions } from "vuex"
-import RestaurantItem from './RestaurantItem'
+import OrderItem from './OrderItem'
 export default {
   name: "AuthForm",
   components: {
-    RestaurantItem
+    OrderItem
   },
   data() {
     return {
-      age: 20,
-      accept: false,
-      email: "",
-      password: "",
-      hidePassword: true,
-      restaurants: [{
-        name: "Placeholder"
-      }],
+      orders: [],
     }
   },
   methods: {
-    onSubmit(ev) {
-      console.log(ev)
-    },
-    onReset(ev) {
-      console.log(ev)
-    },
+    cutToSize(str) {
+      return str.slice(0, 8)
+    }
   },
   async mounted() {
-    const { data: restaurants } = await this.$axios.get("/api/restaurant")
-    this.restaurants = restaurants
+    const { data: orders } = await this.$axios.get("/api/order")
+    this.orders = orders
   },
 }
 </script>
