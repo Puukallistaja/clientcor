@@ -12,7 +12,7 @@ const routes = [
   },
   {
     path: "/office",
-    component: () => import("layouts/officeLayout.vue"),
+    component: () => import("layouts/OfficeLayout.vue"),
     children: [
       {
         name: "Restaurants",
