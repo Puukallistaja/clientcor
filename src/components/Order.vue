@@ -15,10 +15,12 @@
 
 <script>
 import OrderItem from './OrderItem'
+import TaskItem from './TaskItem'
 export default {
   name: "AuthForm",
   components: {
-    OrderItem
+    OrderItem,
+    TaskItem,
   },
   data() {
     return {

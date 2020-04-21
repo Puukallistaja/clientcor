@@ -1,5 +1,9 @@
 <template lang="pug">
-  q-list(bordered separator)
+  q-list(
+    bordered
+    separator
+    style="width: 300px;"
+  )
     q-slide-item(
       @left="onLeft"
       @right="onRight"
@@ -12,8 +16,8 @@
       template(v-slot:right)
         div.row.items-center Cancel
           q-icon(right name="cancel")
-
-      q-item
+      
+      q-item.row.q-my-md
         q-item-section(avatar)
           q-icon(color="primary" name="receipt")
         q-item-section
@@ -25,15 +29,17 @@
         q-item-section
           span.text-weight-thin price
           q-item-section.text-primary.text-bold {{ price }} $
-        q-item-section
-          q-btn(label="Items" color="secondary" style="max-width: 60px")
-            q-tooltip
-              div(
-                v-if="items.length"
-                v-for="(item, indexOfItem) in items"
-                :key="indexOfItem"
-              )
-                span {{ item }}
+
+      q-expansion-item(
+        expand-separator
+        icon="perm_identity"
+        label="Order details"
+        caption="John Doe")
+        q-card
+          q-card-section
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+            eveniet doloribus ullam aliquid.
 </template>
 <script>
 export default {
