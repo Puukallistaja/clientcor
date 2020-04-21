@@ -17,12 +17,13 @@ q-layout
         v-for="(site, indexOfSite) in siteList"
         :key="indexOfSite"
         :active="$route.path == site.path"
+        @click="$router.push(site.path)"
         v-ripple
         clickable
       )
         q-item-section(avatar)
           q-icon(:name="site.icon")
-        q-item-section(@click="$router.push(site.path)") {{ site.name }}
+        q-item-section {{ site.name }}
   q-page-container.q-pa-md
     router-view
 </template>
