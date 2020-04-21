@@ -15,6 +15,11 @@ const routes = [
     component: () => import("layouts/OfficeLayout.vue"),
     children: [
       {
+        name: "The office",
+        path: "",
+        component: () => import("pages/OfficePage.vue"),
+      },
+      {
         name: "Restaurants",
         path: "restaurant",
         component: () => import("pages/RestaurantPage.vue"),

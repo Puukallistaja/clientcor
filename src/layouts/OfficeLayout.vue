@@ -41,7 +41,7 @@ export default {
   name: "LayoutTemplate",
   data() {
     return {
-      drawer: true,
+      drawer: false,
       siteList: [
         {
           name: 'Restaurants',

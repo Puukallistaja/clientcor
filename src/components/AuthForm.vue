@@ -72,7 +72,7 @@ export default {
       const { name, password } = this
       const { data: proof } = await this.$axios.post("/api/auth/login", {
         name,
-        email: name + "backoffice.com",
+        email: name + "@backoffice.com",
         password,
       })
       localStorage.setItem("accessToken", proof.accessToken)

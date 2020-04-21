@@ -2,9 +2,9 @@
   q-list(
     bordered
     separator
-    style="width: 300px;"
   )
     q-slide-item(
+      style="width: 100%; max-width: 500%"
       @left="onLeft"
       @right="onRight"
       left-color="green"
