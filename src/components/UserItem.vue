@@ -1,8 +1,6 @@
 <template lang="pug">
   q-card(style="width: 14rem;")
     q-card-section
-      q-btn(dense color="primary" round icon="email" class="q-ml-md q-ml-auto")
-        q-badge(color="red" floating) 4
       q-card-section.q-pt-xs
         h1(class="text-h5 q-mt-sm q-mb-xs") {{ name }}
       q-card-section.flex.flex-center

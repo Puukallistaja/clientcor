@@ -10,6 +10,7 @@ q-layout
     :breakpoint="500"
     bordered
     overlay
+    mini
   )
    q-scroll-area.fit
     q-list.menu-list(padding)
@@ -24,6 +25,13 @@ q-layout
         q-item-section(avatar)
           q-icon(:name="site.icon")
         q-item-section {{ site.name }}
+      q-item.q-mt-xl
+        q-btn(
+          outline
+          color="warning"
+          label="Log out"
+          @click="logout"
+        )
   q-page-container.q-pa-md
     router-view
 </template>
@@ -33,7 +41,7 @@ export default {
   name: "LayoutTemplate",
   data() {
     return {
-      drawer: false,
+      drawer: true,
       siteList: [
         {
           name: 'Restaurants',
@@ -50,12 +58,18 @@ export default {
           path: '/office/user',
           icon: 'supervisor_account',
         },
-        {
-          name: 'Tasks',
-          path: '/office/task',
-          icon: 'list',
-        },
+        // {
+        //   name: 'Tasks',
+        //   path: '/office/task',
+        //   icon: 'list',
+        // },
       ]
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.setItem('accessToken', "")
+      this.$router.push('/')
     }
   }
 }

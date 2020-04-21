@@ -7,7 +7,7 @@
       class="q-gutter-md"
     )
       q-input(
-        v-model="email"
+        v-model="name"
         suffix="@backoffice.com"
         placeholder="name"
         rounded
@@ -49,6 +49,7 @@
           color="primary"
           size="lg"
           class="q-ml-sm"
+          @click="onReset"
         )
 </template>
 
@@ -62,25 +63,24 @@ export default {
       age: 20,
       accept: false,
       hidePassword: true,
-      email: "",
+      name: "",
       password: "",
     }
   },
   methods: {
     async onSubmit(ev) {
-      console.log(ev)
-      const { email, password } = this
+      const { name, password } = this
       const { data: proof } = await this.$axios.post("/api/auth/login", {
-        email,
+        name,
+        email: name + "backoffice.com",
         password,
       })
-      // console.log()
-
       localStorage.setItem("accessToken", proof.accessToken)
       this.$router.push('/office')
     },
-    onReset(ev) {
-      console.log(ev)
+    onReset() {
+      this.email = ""
+      this.password = ""
     },
   },
   async mounted() {},

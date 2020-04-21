@@ -58,17 +58,17 @@ export default {
   },
   methods: {
     async onSubmit(ev) {
-      console.log(ev)
       const { name, password } = this
       const { data: user } = await this.$axios.post("/api/user", {
         name,
         email: name + "@backoffice.com",
         password
       })
-      console.log({ user })
+      this.$emit('user-created')
     },
     onReset(ev) {
-      console.log(ev)
+      this.name = ""
+      this.password = ""
     },
   },
   async mounted() {},
