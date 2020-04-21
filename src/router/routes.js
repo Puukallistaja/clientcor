@@ -24,6 +24,11 @@ const routes = [
         path: "order",
         component: () => import("pages/OrderPage.vue"),
       },
+      {
+        name: "Users",
+        path: "user",
+        component: () => import("pages/UserPage.vue"),
+      },
     ],
   },
 ]

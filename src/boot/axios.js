@@ -1,7 +1,23 @@
-import Vue from 'vue'
-import axios from 'axios'
+import Vue from "vue"
+import axios from "axios"
 
-Vue.prototype.$axios = axios.create({
+const apiClient = axios.create({
   baseURL: "https://mobcor.justweedthoughts.com/",
-  headers: { Auth: `Bearer ${localStorage.getItem("accessToken")}` },
+  headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
 })
+
+apiClient.interceptors.request.use(
+  (request) => {
+    console.log("intercepted request")
+    console.log(request)
+    request.headers.Authorization = `Bearer ${localStorage.getItem("accessToken")}`
+    return request
+  },
+  (error) => {
+    console.log("intercepted errored request")
+    console.error(error)
+    return error
+  }
+)
+
+Vue.prototype.$axios = apiClient

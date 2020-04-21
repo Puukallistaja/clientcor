@@ -6,7 +6,7 @@ q-layout
       q-toolbar-title
   q-drawer(
     v-model="drawer"
-    :width="200"
+    :width="250"
     :breakpoint="500"
     bordered
     overlay

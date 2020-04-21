@@ -1,20 +1,17 @@
 <template lang="pug">
   div
-    h1.text-h3.q-mb-xl In the back
     q-form(
       @submit="onSubmit"
       @reset="onReset"
       class="q-gutter-md"
     )
       q-input(
-        v-model="email"
+        v-model="name"
         suffix="@backoffice.com"
         placeholder="name"
         rounded
         outlined
       )
-        template(v-slot:before)
-          q-icon(name="mail")
       q-input(
         v-model="password"
         rounded
@@ -22,32 +19,25 @@
         :type="hidePassword ? 'password' : 'text'"
         hint="Password with toggle"
       )
-        template(v-slot:before)
-          q-icon(name="vpn_key")
         template(v-slot:append)
           q-icon(
             :name="hidePassword ? 'visibility_off' : 'visibility'"
             class="cursor-pointer"
             @click="hidePassword = !hidePassword"
           )
-      div.q-ml-lg.q-pl-md
-        q-toggle(
-          v-model="accept"
-          label="I accept the license and terms"
-        )
-      div.q-ml-xl.q-pl-xs.q-mt-xl.justify-center.row
+      .q-mb-xl.justify-center.row
         q-btn(
-          label="Submit"
+          label="Create user"
           type="submit"
           color="primary"
-          size="lg"
+          size="md"
         )
         q-btn(
           flat
-          label="Reset"
+          label="Reset field"
           type="reset"
           color="primary"
-          size="lg"
+          size="md"
           class="q-ml-sm"
         )
 </template>
@@ -62,22 +52,20 @@ export default {
       age: 20,
       accept: false,
       hidePassword: true,
-      email: "",
+      name: "",
       password: "",
     }
   },
   methods: {
     async onSubmit(ev) {
       console.log(ev)
-      const { email, password } = this
-      const { data: proof } = await this.$axios.post("/api/auth/login", {
-        email,
-        password,
+      const { name, password } = this
+      const { data: user } = await this.$axios.post("/api/user", {
+        name,
+        email: name + "@backoffice.com",
+        password
       })
-      // console.log()
-
-      localStorage.setItem("accessToken", proof.accessToken)
-      this.$router.push('/office')
+      console.log({ user })
     },
     onReset(ev) {
       console.log(ev)

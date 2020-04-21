@@ -34,12 +34,13 @@
         expand-separator
         icon="perm_identity"
         label="Order details"
-        caption="John Doe")
+        caption="John Doe"
+      )
         q-card
           q-card-section
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-            eveniet doloribus ullam aliquid.
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+            | commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+            | eveniet doloribus ullam aliquid.
 </template>
 <script>
 export default {
