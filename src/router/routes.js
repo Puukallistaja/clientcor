@@ -6,7 +6,7 @@ const routes = [
       {
         name: "Welcome",
         path: "",
-        component: () => import("pages/_template.vue"),
+        component: () => import("pages/HomePage.vue"),
       },
     ],
   },
