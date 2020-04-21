@@ -1,9 +1,9 @@
 {
-  "name": "turakas_client",
+  "name": "mobcor_client",
   "version": "0.0.1",
   "description": "A pre nuclear card game",
-  "productName": "Turakas",
-  "cordovaId": "com.turakas.happ",
+  "productName": "mobcor",
+  "cordovaId": "com.justweedthoughts.mobapp",
   "capacitorId": "",
   "author": "Arto Haponen <arto@haponen.com>",
   "private": true,
