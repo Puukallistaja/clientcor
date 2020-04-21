@@ -38,7 +38,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['SessionStorage']
     },
 
     supportIE: false,

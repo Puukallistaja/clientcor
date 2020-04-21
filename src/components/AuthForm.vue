@@ -8,8 +8,8 @@
     )
       q-input(
         v-model="email"
-        type="email"
         suffix="@backoffice.com"
+        placeholder="name"
         rounded
         outlined
       )
@@ -61,23 +61,26 @@ export default {
     return {
       age: 20,
       accept: false,
+      hidePassword: true,
       email: "",
       password: "",
-      hidePassword: true,
     }
   },
   methods: {
-    ...mapActions("todos", ["fetchTodos"]),
-    onSubmit(ev) {
+    async onSubmit(ev) {
       console.log(ev)
+      const { email, password } = this
+      const { accessToken } = await this.$axios.post("/api/auth/login", {
+        email,
+        password,
+      })
+      this.$q.sessionStorage.set('accessToken', accessToken)
+      this.$router.push('/office')
     },
     onReset(ev) {
       console.log(ev)
     },
   },
-  async mounted() {
-    await this.fetchTodos(1)
-    this.$axios.get('/api/')
-  },
+  async mounted() {},
 }
 </script>
