@@ -7,7 +7,7 @@
       class="q-gutter-md"
     )
       q-input(
-        v-model="name"
+        v-model="username"
         suffix="@backoffice.com"
         placeholder="name"
         rounded
@@ -20,7 +20,6 @@
         rounded
         outlined
         :type="hidePassword ? 'password' : 'text'"
-        hint="Password with toggle"
       )
         template(v-slot:before)
           q-icon(name="vpn_key")
@@ -63,8 +62,8 @@ export default {
       age: 20,
       accept: false,
       hidePassword: true,
-      name: "",
-      password: "",
+      username: "bilu",
+      password: "bilu",
     }
   },
   methods: {
