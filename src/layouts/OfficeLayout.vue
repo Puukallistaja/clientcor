@@ -2,43 +2,27 @@
 q-layout
   q-header(elevated class="bg-black")
     q-toolbar
-      q-btn(flat @click="drawer = !drawer" round dense icon="menu")
-      q-toolbar-title
-  q-drawer(
-    v-model="drawer"
-    :width="250"
-    :breakpoint="500"
-    bordered
-    overlay
-    mini
-  )
-   q-scroll-area.fit
-    q-list.menu-list(padding)
-      q-item(
-        v-for="(site, indexOfSite) in siteList"
-        :key="indexOfSite"
-        :active="$route.path == site.path"
-        @click="$router.push(site.path)"
-        v-ripple
-        clickable
+      q-btn(
+        flat
+        round
+        dense
+        icon="menu"
+        @click="toggleDrawerMenu(!drawerMenuOpen)"
       )
-        q-item-section(avatar)
-          q-icon(:name="site.icon")
-        q-item-section {{ site.name }}
-      q-item.q-mt-xl
-        q-btn(
-          outline
-          color="warning"
-          label="Log out"
-          @click="logout"
-        )
-  q-page-container.q-pa-md
+      q-toolbar-title
+    drawer-menu
+  q-page-container.q-pl-xl
     router-view
 </template>
 
 <script>
+import DrawerMenu from 'layouts/components/DrawerMenu'
+import { mapActions, mapGetters } from "vuex"
 export default {
   name: "LayoutTemplate",
+  components: {
+    DrawerMenu,
+  },
   data() {
     return {
       drawer: false,
@@ -58,19 +42,14 @@ export default {
           path: '/office/user',
           icon: 'supervisor_account',
         },
-        // {
-        //   name: 'Tasks',
-        //   path: '/office/task',
-        //   icon: 'list',
-        // },
       ]
     }
   },
+  computed: {
+    ...mapGetters('ui', ['drawerMenuOpen'])
+  },
   methods: {
-    logout() {
-      localStorage.setItem('accessToken', "")
-      this.$router.push('/')
-    }
-  }
+    ...mapActions('ui', ['toggleDrawerMenu'])
+  },
 }
 </script>

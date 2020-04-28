@@ -69,14 +69,25 @@ export default {
   },
   methods: {
     async onSubmit(ev) {
-      const { name, password } = this
-      const { data: proof } = await this.$axios.post("/api/auth/login", {
-        name,
-        email: name + "@backoffice.com",
-        password,
-      })
+      const { username, password } = this
+      const { data: proof } = await this.$axios.post(
+        "/oauth/token",
+        {},
+        {
+          // these parameters should be in .env
+          auth: { username: "mobileClientId", password: "mobileClientSecret" },
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          params: {
+            grant_type: "password",
+            username,
+            password,
+          },
+        }
+      )
       localStorage.setItem("accessToken", proof.accessToken)
-      this.$router.push('/office')
+      this.$router.push("/office")
     },
     onReset() {
       this.email = ""

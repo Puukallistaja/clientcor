@@ -5,7 +5,7 @@ describe('Landing', () => {
     cy.visit('/')
   })
   it('.should() - assert that <title> is correct', () => {
-    cy.title().should('include', 'Turakas')
+    cy.title().should('include', 'CorrectTitle')
   })
 })
 

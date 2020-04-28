@@ -3,7 +3,7 @@ import axios from "axios"
 
 const apiClient = axios.create({
   baseURL: "https://mobcor.justweedthoughts.com/",
-  baseURL: "http://localhost:4000",
+  // baseURL: "http://localhost:4000",
   headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
 })
 

@@ -81,8 +81,8 @@ module.exports = function (ctx) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'Turakas',
-        short_name: 'Turakas',
+        name: 'starter',
+        short_name: 'starter',
         description: 'A pre nuclear card game',
         display: 'standalone',
         orientation: 'portrait',
@@ -121,7 +121,7 @@ module.exports = function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-      id: 'com.turakas.happ'
+      id: 'com.starter.happ'
     },
 
 
@@ -150,7 +150,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'turakas_client'
+        appId: 'starter_client'
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
