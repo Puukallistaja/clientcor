@@ -2,8 +2,7 @@ import Vue from "vue"
 import axios from "axios"
 
 const apiClient = axios.create({
-  baseURL: "https://mobcor.justweedthoughts.com/",
-  // baseURL: "http://localhost:4000",
+  baseURL: "https://qa.greengorilla.unity.pl/",
   headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
 })
 
